@@ -72,14 +72,14 @@ section{padding:84px 0}.kicker{font-size:12px;letter-spacing:2px;text-transform:
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     const email=emailInput.value.trim().toLowerCase();
-    if(email.length>254||!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){errorBox.textContent='Informe um e-mail válido para continuar.';emailInput.focus();return;}
+    if(email.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errorBox.textContent='Informe um e-mail válido para continuar.';emailInput.focus();return;}
     submit.disabled=true;submit.textContent='CONECTANDO AO MERCADO PAGO...';errorBox.textContent='';
     try{
       const response=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
       const data=await response.json();
       if(!response.ok||!data.checkout_url||data.mode!=='test')throw new Error(data.error||'Não foi possível iniciar o checkout.');
       const url=new URL(data.checkout_url);
-      if(url.protocol!=='https:'||!/(^|\\.)mercadopago\\.com(\\.br)?$/.test(url.hostname))throw new Error('Endereço de pagamento inválido.');
+      if(url.protocol!=='https:'||!/(^|\.)mercadopago\.com(\.br)?$/.test(url.hostname))throw new Error('Endereço de pagamento inválido.');
       window.location.assign(url.href);
     }catch(error){errorBox.textContent=error.message||'Não foi possível conectar. Tente novamente.';submit.disabled=false;submit.textContent='CONTINUAR PARA O PAGAMENTO →';}
   });
