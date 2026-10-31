@@ -11,6 +11,9 @@ header{background:var(--navy);color:white;border-bottom:1px solid #ffffff20}.nav
 section{padding:84px 0}.kicker{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:900}.section-title{font-size:clamp(31px,4vw,48px);letter-spacing:-1.8px;line-height:1.14;margin:12px 0 18px}.sub{color:var(--muted);max-width:710px;font-size:17px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}.tile{background:white;border:1px solid #e4e9e5;border-radius:18px;padding:28px;box-shadow:0 10px 30px #10203308}.tile .emoji{font-size:30px}.tile h3{margin:15px 0 8px;font-size:20px;line-height:1.25}.tile p{margin:0;color:var(--muted);font-size:14px}.dark{background:#10233b;color:white}.dark .sub{color:#c1cfdf}.dark .tile{background:#1a344e;border-color:#35536a;color:white}.dark .tile p{color:#c6d2dd}.pill{display:inline-block;background:#e9f5ec;color:#216347;font-size:11px;padding:5px 10px;border-radius:30px;font-weight:800;margin-top:15px}.dark .pill{background:#244e4d;color:#b5f2d4}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:35px}.step{padding:25px;background:#ffffff0b;border:1px solid #ffffff26;border-radius:16px}.step b{font-size:32px;color:var(--mint)}.step h3{margin:12px 0 8px}.step p{color:#c4d0dd;font-size:14px;margin:0}.material{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}.material-display{background:#e7efe8;border-radius:28px;min-height:380px;display:grid;place-items:center;padding:32px}.files{display:grid;gap:13px;width:100%;max-width:380px}.file{background:white;border-radius:14px;box-shadow:0 8px 22px #152d2614;padding:18px;display:flex;gap:15px;align-items:center}.file .ico{font-size:27px}.file b{display:block;font-size:14px}.file small{color:var(--muted)}.checks{padding:0;list-style:none}.checks li{margin:14px 0;padding-left:31px;position:relative}.checks li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:900}.banner{background:#eaf5ee;border-left:4px solid var(--green);padding:18px 22px;border-radius:10px;color:#31574a;font-size:14px;margin-top:30px}.price-section{background:#f1f4ed}.price-card{max-width:600px;margin:35px auto 0;background:white;border:1px solid #d9e6db;border-radius:24px;padding:40px;box-shadow:0 20px 65px #162a2717;text-align:center}.price-card .price{font-size:65px;font-weight:900;letter-spacing:-3px;line-height:1.1;margin:15px 0}.price-card .btn{width:100%;border:0;cursor:pointer;font-size:17px}.price-card .info{font-size:12px;color:var(--muted);margin-top:15px}.notice{margin-top:18px;padding:15px;border-radius:12px;background:#fff6df;color:#785a1c;font-size:13px;text-align:left}.faq{max-width:850px;margin:32px auto 0}details{background:white;border:1px solid #e3e8e2;border-radius:12px;margin:11px 0;padding:18px 21px}summary{font-weight:800;cursor:pointer}details p{color:var(--muted);margin-bottom:0}footer{background:var(--navy);color:#b9c9d9;padding:36px 0;font-size:13px}footer strong{color:white}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.sticky{display:none}
 @media(max-width:800px){.hero-grid,.material{grid-template-columns:1fr}.hero{padding:46px 0 60px}.hero h1{letter-spacing:-2px}.visual{min-height:340px}.orbit{width:290px;height:290px}.mock{width:235px;height:300px;padding:22px}.mock strong{font-size:29px}.f1{right:8px}.f2{left:4px}.grid3{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}section{padding:62px 0}.nav a.cta{font-size:12px;padding:10px 13px}}
 @media(max-width:530px){.grid3,.steps{grid-template-columns:1fr}.hero h1{font-size:46px}.hero p{font-size:16px}.price-card{padding:26px 21px}.price-card .price{font-size:57px}.nav .brand{font-size:15px}.visual{min-height:335px}.sticky{display:block;position:fixed;bottom:0;left:0;right:0;padding:10px 16px;background:#fffef6;border-top:1px solid #dce6dd;z-index:5}.sticky .btn{width:100%;padding:12px}body{padding-bottom:70px}}
+
+/* Modal de checkout */
+.checkout-overlay[hidden]{display:none}.checkout-overlay{position:fixed;inset:0;z-index:1000;background:rgba(7,18,38,.76);backdrop-filter:blur(7px);display:grid;place-items:center;padding:18px}.checkout-dialog{position:relative;width:min(100%,465px);background:#fff;border-radius:24px;padding:38px 34px 32px;box-shadow:0 30px 95px #0005;color:var(--ink);animation:checkout-in .2s ease-out}.checkout-close{position:absolute;right:16px;top:15px;background:#f0f3f4;border:0;width:36px;height:36px;border-radius:50%;font-size:23px;color:#526176;cursor:pointer}.checkout-mark{width:52px;height:52px;border-radius:16px;background:#e5f8ed;display:grid;place-items:center;color:#176a4c;font-size:26px;margin-bottom:18px}.checkout-dialog h2{font-size:28px;line-height:1.15;letter-spacing:-.8px;margin:0 0 10px}.checkout-dialog p{color:var(--muted);font-size:14px;margin:0 0 23px}.checkout-dialog label{font-weight:750;font-size:13px;display:block;margin-bottom:8px}.checkout-dialog input{width:100%;padding:16px;border:1.5px solid #cdd8d7;border-radius:12px;font:inherit;font-size:16px;outline:none;background:#fbfcfc}.checkout-dialog input:focus{border-color:#1d795c;box-shadow:0 0 0 4px #b5f2d466}.checkout-submit{width:100%;margin-top:16px;border:0;cursor:pointer;font-size:15px}.checkout-submit:disabled{opacity:.65;cursor:wait}.checkout-error{color:#a22e2e;font-size:13px;margin-top:10px;min-height:18px}.checkout-foot{text-align:center;font-size:12px;color:#6d7889;margin-top:12px}.checkout-price{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-top:1px solid #edf0ee;margin-top:14px;font-size:14px}.checkout-price strong{font-size:22px;color:var(--green)}body.checkout-open{overflow:hidden}@keyframes checkout-in{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}@media(max-width:480px){.checkout-dialog{padding:32px 22px 25px;border-radius:20px}.checkout-dialog h2{font-size:25px}}
 </style></head><body>
 <header><div class="wrap nav"><a class="brand" href="#">DO INTERIOR <em>AO HOME OFFICE</em></a><a class="cta" href="#oferta">QUERO COMEÇAR AGORA ↗</a></div></header>
 <main>
@@ -23,6 +26,7 @@ section{padding:84px 0}.kicker{font-size:12px;letter-spacing:2px;text-transform:
 <section class="price-section" id="oferta"><div class="wrap" style="text-align:center"><div class="kicker">Invista no seu próximo passo</div><h2 class="section-title">Comece com um caminho mais claro.</h2><p class="sub" style="margin:auto">Um material de materiais digitais para apoiar sua busca por oportunidades de trabalho remoto.</p><div class="price-card"><span class="pill">GUIA PRÁTICO + MATERIAIS EXCLUSIVOS</span><h3 style="font-size:26px;line-height:1.2;margin:16px 0">Do Interior ao Home Office</h3><div class="price">R$ 29,90</div><p style="color:var(--muted)">Pagamento único • Acesso ao guia e aos materiais complementares</p><ul class="checks" style="text-align:left;margin:26px auto;max-width:350px"><li>Guia em PDF e Word</li><li>Modelos editáveis em Word</li><li>Planilha de acompanhamento em Excel</li></ul><button class="btn" type="button" id="comprar">QUERO COMEÇAR AGORA →</button><div class="info">Estamos testando o checkout. A entrega digital será ativada após a confirmação segura do pagamento.</div><div class="notice" id="checkout-notice" role="status">🔒 <strong>Prévia do site:</strong> o checkout ainda não está conectado. Nenhum pagamento será cobrado nesta versão.</div></div></div></section>
 <section><div class="wrap"><div class="kicker" style="text-align:center">Dúvidas frequentes</div><h2 class="section-title" style="text-align:center">Tudo o que você precisa saber.</h2><div class="faq"><details><summary>O guia garante que vou conseguir um emprego?</summary><p>Não. O conteúdo é educativo e ajuda a organizar a busca e a preparação. A contratação depende dos requisitos de cada vaga e dos processos seletivos das empresas.</p></details><details><summary>Preciso ter experiência para usar o material?</summary><p>Você pode começar a estudar o material mesmo sem experiência profissional. Porém, algumas vagas exigem formação, experiência ou conhecimentos específicos.</p></details><details><summary>O que está incluído no meu acesso?</summary><p>Você recebe o guia completo em PDF e Word, além de modelos editáveis para currículo, LinkedIn e entrevistas e uma planilha para organizar suas candidaturas. Os materiais são entregues em um arquivo ZIP.</p></details><details><summary>As empresas enviam computador para trabalhar?</summary><p>Algumas fornecem equipamentos; outras exigem estrutura própria. Consulte sempre a descrição da vaga e a empresa contratante.</p></details><details><summary>Como receberei meu material?</summary><p>Após a confirmação do pagamento, o botão de download será disponibilizado neste mesmo navegador. Guarde a página de compra até concluir o download.</p></details><details><summary>O material inclui vagas garantidas?</summary><p>Não. O guia apresenta estratégias de pesquisa e preparação. As oportunidades disponíveis mudam e não há vínculo com empresas contratantes.</p></details></div></div></section>
 <section id="area-download" style="display:none;background:#e8f3eb"><div class="wrap" style="text-align:center"><h2 class="section-title">Acompanhe seu pagamento</h2><p id="download-message">Consultando o pagamento...</p><a id="download-link" class="btn" href="/api/download" style="display:none">BAIXAR MEU KIT COMPLETO ↓</a><p style="font-size:13px;color:#52655b">Use o mesmo navegador da compra. O arquivo só será liberado após a aprovação.</p></div></section></main><footer><div class="wrap foot"><div><strong>DO INTERIOR AO HOME OFFICE</strong><div>Sua cidade não precisa limitar suas oportunidades.</div></div><div>Material educativo independente • © 2026</div></div></footer><div class="sticky"><a href="#oferta" class="btn">QUERO COMEÇAR AGORA • R$ 29,90 →</a></div>
+<div id="checkout-overlay" class="checkout-overlay" hidden><div class="checkout-dialog" role="dialog" aria-modal="true" aria-labelledby="checkout-title" aria-describedby="checkout-desc"><button type="button" class="checkout-close" id="checkout-close" aria-label="Fechar">×</button><div class="checkout-mark" aria-hidden="true">✉</div><h2 id="checkout-title">Seu próximo passo começa aqui</h2><p id="checkout-desc">Informe seu melhor e-mail para continuar com segurança ao pagamento do kit digital.</p><form id="checkout-form" novalidate><label for="checkout-email">Seu e-mail</label><input id="checkout-email" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com" required><div id="checkout-error" class="checkout-error" role="alert" aria-live="polite"></div><div class="checkout-price"><span>Kit Do Interior ao Home Office</span><strong>R$ 29,90</strong></div><button id="checkout-submit" type="submit" class="btn checkout-submit">CONTINUAR PARA O PAGAMENTO →</button></form><div class="checkout-foot">🔒 Ambiente de teste · Pagamento processado pelo Mercado Pago</div></div></div>
 <script>
 (function(){
   const params=new URLSearchParams(window.location.search);
@@ -48,34 +52,36 @@ section{padding:84px 0}.kicker{font-size:12px;letter-spacing:2px;text-transform:
   const notice = document.getElementById('checkout-notice');
   if (!button || !notice) return;
   notice.innerHTML = '🔒 <strong>Checkout em teste:</strong> nenhuma compra real será processada nesta etapa. Informe seu e-mail para testar o redirecionamento.';
-  button.addEventListener('click', async function(){
-    const email = window.prompt('Informe seu e-mail para continuar ao checkout de TESTE:');
-    if (email === null) return;
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-    if (!valid) { window.alert('Informe um e-mail válido.'); return; }
-    button.disabled = true;
-    const originalText = button.textContent;
-    button.textContent = 'CONECTANDO AO MERCADO PAGO...';
-    notice.textContent = 'Aguarde: solicitando checkout de teste ao servidor...';
-    try {
-      const response = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({email: email.trim()})
-      });
-      const data = await response.json();
-      if (!response.ok || !data.checkout_url || data.mode !== 'test') {
-        throw new Error(data.error || 'Não foi possível iniciar o checkout de teste.');
-      }
-      const url = new URL(data.checkout_url);
-      if (url.protocol !== 'https:' || !/(^|\.)mercadopago\.com(\.br)?$/.test(url.hostname)) throw new Error('Endereço de pagamento inválido.');
+  const overlay=document.getElementById('checkout-overlay');
+  const form=document.getElementById('checkout-form');
+  const emailInput=document.getElementById('checkout-email');
+  const errorBox=document.getElementById('checkout-error');
+  const submit=document.getElementById('checkout-submit');
+  const closeButton=document.getElementById('checkout-close');
+  let lastFocus=null;
+  function closeModal(){if(submit.disabled)return;overlay.hidden=true;document.body.classList.remove('checkout-open');if(lastFocus)lastFocus.focus();}
+  function openModal(){lastFocus=document.activeElement;errorBox.textContent='';overlay.hidden=false;document.body.classList.add('checkout-open');emailInput.focus();}
+  button.addEventListener('click',openModal);
+  closeButton.addEventListener('click',closeModal);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
+  document.addEventListener('keydown',e=>{
+    if(overlay.hidden)return;
+    if(e.key==='Escape'){closeModal();return;}
+    if(e.key==='Tab'){const focusables=[closeButton,emailInput,submit];const index=focusables.indexOf(document.activeElement);if(e.shiftKey&&index===0){e.preventDefault();submit.focus();}else if(!e.shiftKey&&index===2){e.preventDefault();closeButton.focus();}}
+  });
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const email=emailInput.value.trim().toLowerCase();
+    if(email.length>254||!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){errorBox.textContent='Informe um e-mail válido para continuar.';emailInput.focus();return;}
+    submit.disabled=true;submit.textContent='CONECTANDO AO MERCADO PAGO...';errorBox.textContent='';
+    try{
+      const response=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+      const data=await response.json();
+      if(!response.ok||!data.checkout_url||data.mode!=='test')throw new Error(data.error||'Não foi possível iniciar o checkout.');
+      const url=new URL(data.checkout_url);
+      if(url.protocol!=='https:'||!/(^|\\.)mercadopago\\.com(\\.br)?$/.test(url.hostname))throw new Error('Endereço de pagamento inválido.');
       window.location.assign(url.href);
-    } catch (error) {
-      notice.textContent = '⚠️ ' + (error.message || 'Falha ao conectar. Tente novamente.');
-      notice.scrollIntoView({behavior:'smooth',block:'center'});
-      button.disabled = false;
-      button.textContent = originalText;
-    }
+    }catch(error){errorBox.textContent=error.message||'Não foi possível conectar. Tente novamente.';submit.disabled=false;submit.textContent='CONTINUAR PARA O PAGAMENTO →';}
   });
 })();
 </script>
