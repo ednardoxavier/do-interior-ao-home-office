@@ -1,9 +1,9 @@
 const {randomUUID}=require('node:crypto');
-const {PRODUCT,configured,db,setCookie}=require('./_lib');
+const {PRODUCT,enabled,configured,db,setCookie}=require('./_lib');
 module.exports=async(req,res)=>{
  res.setHeader('Cache-Control','no-store');
  if(req.method!=='POST')return res.status(405).json({error:'Método não permitido.'});
- if(process.env.CHECKOUT_TEST_MODE!=='true'||!configured())return res.status(503).json({error:'Checkout bloqueado até a configuração completa do ambiente de testes.'});
+ if(!enabled()||!configured())return res.status(503).json({error:'Checkout bloqueado até a configuração completa do ambiente de testes.'});
  const email=String(req.body?.email||'').trim().toLowerCase();
  if(email.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return res.status(400).json({error:'Informe um e-mail válido.'});
  try{
@@ -16,6 +16,6 @@ module.exports=async(req,res)=>{
  const mp=await r.json().catch(()=>({}));if(!r.ok||!mp.id||!mp.checkout_url)throw new Error(`Falha Mercado Pago ${r.status}`);
  const url=new URL(mp.checkout_url);if(url.protocol!=='https:'||!/(^|\.)mercadopago\.com(\.br)?$/.test(url.hostname))throw new Error('URL inválida');
  await db('orders','PATCH',`?id=eq.${id}`,{provider_preference_id:String(mp.id)});
- setCookie(res,id);return res.status(200).json({checkout_url:url.href,mode:'test'});
- }catch(e){console.error(e.message);return res.status(502).json({error:'Não foi possível iniciar o checkout de teste.'});}
+ setCookie(res,id);return res.status(200).json({checkout_url:url.href,mode:process.env.VERCEL_ENV==='production'?'production':'test'});
+ }catch(e){console.error(e.message);return res.status(502).json({error:'Não foi possível iniciar o checkout.'});}
 };
