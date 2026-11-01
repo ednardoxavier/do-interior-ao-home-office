@@ -1,9 +1,9 @@
 const crypto=require('node:crypto');
-const {db,mpOrder,approved}=require('./_lib');
+const {enabled,db,mpOrder,approved}=require('./_lib');
 const {deliver}=require('./_email');
 module.exports=async(req,res)=>{
  res.setHeader('Cache-Control','no-store');if(req.method!=='POST')return res.status(405).end();
- if(process.env.CHECKOUT_TEST_MODE!=='true'||!process.env.MERCADO_PAGO_WEBHOOK_SECRET||!process.env.SUPABASE_SERVICE_ROLE_KEY)return res.status(503).end();
+ if(!enabled()||!process.env.MERCADO_PAGO_WEBHOOK_SECRET||!process.env.SUPABASE_SERVICE_ROLE_KEY)return res.status(503).end();
  const id=String(req.query?.['data.id']||req.body?.data?.id||'');const xreq=String(req.headers['x-request-id']||'');const signature=String(req.headers['x-signature']||'');const ts=/ts=([^,]+)/.exec(signature)?.[1];const hash=/v1=([a-f0-9]+)/i.exec(signature)?.[1];
  if(!id||!xreq||!ts||!hash||!/^\d+$/.test(ts)||Math.abs(Date.now()-Number(ts))>300000)return res.status(401).end();
  const manifest=`id:${id.toLowerCase()};request-id:${xreq};ts:${ts};`;
