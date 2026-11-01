@@ -1,6 +1,7 @@
 const crypto = require('node:crypto');
 const PRODUCT = 'do-interior-ao-home-office';
 const FILE = 'Kit_Completo_Do_Interior_ao_Home_Office.zip';
+function enabled(){return process.env.VERCEL_ENV==='production'||process.env.CHECKOUT_TEST_MODE==='true';}
 function configured(){return ['SUPABASE_URL','SUPABASE_SERVICE_ROLE_KEY','MERCADO_PAGO_ACCESS_TOKEN','DOWNLOAD_SESSION_SECRET'].every(k=>!!process.env[k]);}
 async function db(table, method='GET', query='', body){
  const r=await fetch(`${process.env.SUPABASE_URL}/rest/v1/${table}${query}`,{method,headers:{apikey:process.env.SUPABASE_SERVICE_ROLE_KEY,Authorization:`Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,'Content-Type':'application/json',Prefer:'return=representation'},body:body?JSON.stringify(body):undefined});
@@ -18,4 +19,4 @@ async function signedDownload(){const r=await fetch(`${process.env.SUPABASE_URL}
  // not the root of the project domain.
  if(!signed.startsWith('/object/sign/materiais-exclusivos/')||!signed.includes('token='))throw new Error('Storage returned invalid signed URL');
  return new URL('/storage/v1'+signed,process.env.SUPABASE_URL).href;}
-module.exports={PRODUCT,configured,db,cookie,setCookie,sync,mpOrder,approved,signedDownload};
+module.exports={PRODUCT,enabled,configured,db,cookie,setCookie,sync,mpOrder,approved,signedDownload};
