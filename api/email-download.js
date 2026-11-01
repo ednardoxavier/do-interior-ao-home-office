@@ -1,10 +1,10 @@
 const crypto=require('node:crypto');
-const {configured,db,signedDownload}=require('./_lib');
+const {enabled,configured,db,signedDownload}=require('./_lib');
 module.exports=async(req,res)=>{
  res.setHeader('Cache-Control','no-store');
  res.setHeader('Referrer-Policy','no-referrer');
  if(req.method!=='GET')return res.status(405).end();
- if(process.env.CHECKOUT_TEST_MODE!=='true'||!configured())return res.status(503).end();
+ if(!enabled()||!configured())return res.status(503).end();
  const token=String(req.query?.token||'');
  if(!/^[a-f0-9]{64}$/.test(token))return res.status(400).json({error:'Link inválido.'});
  try{
