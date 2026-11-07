@@ -10,7 +10,7 @@ const a=await fetch(process.env.SUPABASE_URL+'/auth/v1/user',{headers:{apikey:'s
 if(!a.ok)return res.status(401).end();
 const u=await a.json();
 if(u.email?.toLowerCase()!==ADMIN||!u.email_confirmed_at)return res.status(403).end();
-if(req.method==='GET'){const orders=await db('orders','GET','?status=eq.approved&select=id,buyer_email,amount_cents,paid_at,created_at&order=created_at.desc&limit=500');return res.json({orders});}
+if(req.method==='GET'){const orders=await db('orders','GET','?status=eq.approved&select=id,buyer_email,amount_cents,paid_at,created_at,provider_preference_id&order=created_at.desc&limit=500');const unique=new Map();for(const o of orders){if(!o.provider_preference_id||String(o.provider_preference_id).startsWith('ORDTST'))continue;const email=String(o.buyer_email||'').trim().toLowerCase();if(email&&!unique.has(email))unique.set(email,{id:o.id,buyer_email:o.buyer_email,amount_cents:o.amount_cents,paid_at:o.paid_at,created_at:o.created_at});}return res.json({orders:[...unique.values()]});}
 if(req.method==='POST'){
 const id=String(req.body?.id||'');
 if(!/^[a-f0-9-]{36}$/.test(id))return res.status(400).end();
