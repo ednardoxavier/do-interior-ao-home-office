@@ -14,7 +14,14 @@ section{padding:84px 0}.kicker{font-size:12px;letter-spacing:2px;text-transform:
 
 /* Modal de checkout */
 .checkout-overlay[hidden]{display:none}.checkout-overlay{position:fixed;inset:0;z-index:1000;background:rgba(7,18,38,.76);backdrop-filter:blur(7px);display:grid;place-items:center;padding:18px}.checkout-dialog{position:relative;width:min(100%,465px);background:#fff;border-radius:24px;padding:38px 34px 32px;box-shadow:0 30px 95px #0005;color:var(--ink);animation:checkout-in .2s ease-out}.checkout-close{position:absolute;right:16px;top:15px;background:#f0f3f4;border:0;width:36px;height:36px;border-radius:50%;font-size:23px;color:#526176;cursor:pointer}.checkout-mark{width:52px;height:52px;border-radius:16px;background:#e5f8ed;display:grid;place-items:center;color:#176a4c;font-size:26px;margin-bottom:18px}.checkout-dialog h2{font-size:28px;line-height:1.15;letter-spacing:-.8px;margin:0 0 10px}.checkout-dialog p{color:var(--muted);font-size:14px;margin:0 0 23px}.checkout-dialog label{font-weight:750;font-size:13px;display:block;margin-bottom:8px}.checkout-dialog input{width:100%;padding:16px;border:1.5px solid #cdd8d7;border-radius:12px;font:inherit;font-size:16px;outline:none;background:#fbfcfc}.checkout-dialog input:focus{border-color:#1d795c;box-shadow:0 0 0 4px #b5f2d466}.checkout-submit{width:100%;margin-top:16px;border:0;cursor:pointer;font-size:15px}.checkout-submit:disabled{opacity:.65;cursor:wait}.checkout-error{color:#a22e2e;font-size:13px;margin-top:10px;min-height:18px}.checkout-foot{text-align:center;font-size:12px;color:#6d7889;margin-top:12px}.checkout-price{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-top:1px solid #edf0ee;margin-top:14px;font-size:14px}.checkout-price strong{font-size:22px;color:var(--green)}body.checkout-open{overflow:hidden}@keyframes checkout-in{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}@media(max-width:480px){.checkout-dialog{padding:32px 22px 25px;border-radius:20px}.checkout-dialog h2{font-size:25px}}
-</style></head><body>
+</style><!-- Meta Pixel: Do Interior ao Home Office -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','4387251344907225');
+fbq('track','PageView');
+</script>
+<!-- End Meta Pixel -->
+</head><body>
 <header><div class="wrap nav"><a class="brand" href="#">DO INTERIOR <em>AO HOME OFFICE</em></a><a class="cta" href="#oferta">QUERO COMEÇAR AGORA ↗</a></div></header>
 <main>
 <div class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">✦ Guia prático + materiais editáveis</span><h1>Sua cidade não precisa <span>limitar suas oportunidades.</span></h1><p>Descubra como procurar vagas home office reais, preparar sua apresentação profissional e organizar suas candidaturas — esteja você no interior ou na cidade grande.</p><a class="btn" href="#oferta">QUERO COMEÇAR AGORA <span>→</span></a><div class="tiny">✓ Guia + modelos editáveis + planilha &nbsp; • &nbsp; Sem promessa de contratação</div></div><div class="visual" aria-label="Representação ilustrativa da capa do material"><div class="orbit"></div><div class="mock"><small>GUIA + FERRAMENTAS</small><strong>DO INTERIOR<br><span>AO HOME OFFICE</span></strong><footer>Um caminho prático para buscar oportunidades de trabalho remoto.</footer></div><div class="float f1">💻 Seu trabalho, novos horizontes</div><div class="float f2">📋 Conteúdo e ferramentas para colocar em prática</div></div></div></div>
@@ -40,7 +47,21 @@ section{padding:84px 0}.kicker{font-size:12px;letter-spacing:2px;text-transform:
         const r=await fetch('/api/download-status',{cache:'no-store'});
         const data=await r.json();
         if(!r.ok)throw new Error(data.error||'Não foi possível consultar.');
-        if(data.download_ready){msg.textContent='Pagamento aprovado! Seu material está pronto.';link.style.display='inline-flex';return true;}
+        if(data.download_ready){
+          msg.textContent='Pagamento aprovado! Seu material está pronto.';
+          link.style.display='inline-flex';
+          // The server returns order_id only after verifying an approved Mercado Pago order.
+          if(data.order_id && typeof window.fbq==='function'){
+            const key='meta_purchase_sent_'+data.order_id;
+            try{
+              if(!localStorage.getItem(key)){
+                window.fbq('track','Purchase',{value:29.90,currency:'BRL',content_ids:['do-interior-ao-home-office'],content_type:'product',contents:[{id:'do-interior-ao-home-office',quantity:1}]},{eventID:data.order_id});
+                localStorage.setItem(key,'1');
+              }
+            }catch(e){console.warn('Purchase tracking unavailable',e);}
+          }
+          return true;
+        }
         msg.textContent='Pagamento ainda não confirmado. Atualize esta página em alguns instantes.';
       }catch(e){msg.textContent=e.message||'Não foi possível consultar o pagamento.';}
       return false;
